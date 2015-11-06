@@ -16,7 +16,7 @@ mkdir(resultdir);
 ERS=[];mem=[];ln=[];
 ERS_z=[];mem_z=[];ln_z=[];
 kmax=128-radius;jmax=128-radius;imax=75-radius
-kmin=1+radius;jmax=1+radius;imax=1+radius
+kmin=1+radius;jmin=1+radius;imin=1+radius
 nt=50; %100; 200; 500; 1000
 coords=zeros(23,nt,4);
 for s=subs;
@@ -47,17 +47,18 @@ for s=subs;
 		b=a(1)*a(2)*a(3);
 		p=sum(find(data_balls)>=0.01)/b
 
-            if p>=0.9
+			if p>=0.9
 			t=t+1
-            runtime = runtime + 1
+            		runtime = runtime + 1
 			coords(s,t,[1:3])=[k,j,i];
 			coords(s,t,4)=runtime;
 			else
 			runtime = runtime + 1
 			end %if
-	    else
-        runtime = runtime + 1
-        end %if
+	    	else
+        	runtime = runtime + 1
+        	end %if
+
 		if t==nt | runtime >= 100000
             	flag = 0;
             	break;

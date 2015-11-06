@@ -1,4 +1,4 @@
-function [idx_ERS_I,idx_ERS_IB_all,idx_ERS_IB_wc,idx_ERS_D,idx_ERS_DB_all,idx_ERS_DB_wc,idx_mem_D,idx_mem_DB_all,idx_mem_DB_wc,idx_ln_D,idx_ln_DB_all,idx_ln_DB_wc]=get_idx(s)
+function [idx_ERS_I,idx_ERS_IB_all,idx_ERS_IB_wc,idx_ERS_D,idx_ERS_DB_all,idx_ERS_DB_wc,idx_mem_D,idx_mem_DB_all,idx_mem_DB_wc,idx_ln_D,idx_ln_DB_all,idx_ln_DB_wc,old_idx]=get_idx(s)
 basedir='/seastor/helenhelen/isr';
 labeldir=[basedir,'/behav/label'];
 %data structure
@@ -39,6 +39,7 @@ TN=120; % 48learning + 72retrieval;
         list_submem(:,Mphase)=2;
         new_mem=list_submem(list_submem(:,Moldnew)==1,:);
         oldposit=list_submem(list_submem(:,Moldnew)==1,Mposit);
+        old_idx=list_submem(list_submem(:,Moldnew)==1,Mposit);
         for nn=1:48
         p=list_subln(nn,MpID);w=list_subln(nn,MwID);
         list_subln(nn,Mmem)=list_submem(list_submem(:,MpID)==p & list_submem(:,MwID)==w,Mmem);
